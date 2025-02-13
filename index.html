@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanzamiento de Dados</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Resultados del Lanzamiento de Dados</h1>
+    
+    <div style="text-align: center;">
+        <button onclick="lanzarYAgregarFila()">Lanzar Dados</button>
+    </div>
+    <table border="1" id="tablaResultados">
+        <thead>
+            <tr>
+                <th>Dado 1</th>        <th>Dado 2</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody id="bodyTabla">
+            <!-- Las filas se añadirán aquí -->
+        </tbody>
+    </table>
+    <div style="text-align: center;">
+        <button onclick="lanzarYAgregarFila()">Lanzar Dados</button>
+    </div>
+
+    <script>
+        // Función que genera un número aleatorio entre 1 y 6
+        function lanzarDado() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        // Función que lanza los dados y añade una fila con el resultado a la tabla
+        function lanzarYAgregarFila() {
+            var dado1 = lanzarDado();
+            var dado2 = lanzarDado();
+            var suma = dado1 + dado2;
+
+            //var tabla = document.getElementById("tablaResultados").getElementsByTagName('tbody')[0];
+            var tabla=document.getElementById("bodyTabla");
+            var nuevaFila = document.createElement("tr");
+
+            var celdaDado1 = document.createElement("td");
+            var celdaDado2 = document.createElement("td");
+            var celdaSuma = document.createElement("td");
+
+            celdaDado1.textContent = dado1;
+            celdaDado2.textContent = dado2;
+            celdaSuma.textContent = suma;
+
+            nuevaFila.appendChild(celdaDado1);
+            nuevaFila.appendChild(celdaDado2);
+            nuevaFila.appendChild(celdaSuma);
+
+            tabla.appendChild(nuevaFila);
+        }
+    </script>
+</body>
+</html>
